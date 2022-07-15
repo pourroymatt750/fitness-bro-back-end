@@ -6,7 +6,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-
+router.get('/',workoutsCtrl.workoutSearch)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 // router.get('/', checkAuth, workoutsCtrl.index)
