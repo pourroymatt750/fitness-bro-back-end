@@ -6,7 +6,7 @@ function workoutSearch(req, res) {
     method: 'GET',
     url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
     params: {muscle: req.query.search},
-    headers: {
+    headers:{
       'X-RapidAPI-Key': process.env.XRapidAPIKey,
     }
   };
