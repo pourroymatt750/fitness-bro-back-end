@@ -21,9 +21,9 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/auth', workoutsRouter)
-app.use('/api/auth', mealsRouter)
-app.use('/api/auth', commentsRouter)
+app.use('/api/workouts', workoutsRouter)
+app.use('/api/meals', mealsRouter)
+app.use('/api/comments', commentsRouter)
 
 
 app.use(function (req, res, next) {
