@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5, default: 5},
   comment: {type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
 }, {
   timestamps: true
 })
@@ -12,7 +13,8 @@ const reviewSchema = new Schema({
 const workoutSchema = new Schema({
   name: String,
   description: String,
-  reviews: [reviewSchema]
+  reviews: [reviewSchema], 
+
 }, {
   timestamps: true
 })
