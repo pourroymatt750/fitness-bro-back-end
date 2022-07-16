@@ -4,8 +4,8 @@ import axios from "axios";
 function mealSearch(req, res) {
   const options = {
   method: 'GET',
-  url: 'https://nutritionix-api.p.rapidapi.com/v1_1/item',
-  params: {upc: req.query.search},
+  url: 'https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition',
+  params: {query: req.query.search},
   headers: {
     'X-RapidAPI-Key': process.env.XRapidAPIKey,
   }
