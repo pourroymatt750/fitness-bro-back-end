@@ -16,7 +16,26 @@ function workoutSearch(req, res) {
     console.error(error)
   });
 }
+
+function show(req, res) {
+  const options = {
+    method: 'GET',
+    url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
+    params: {name: req.params.exerciseName},
+    headers:{
+      'X-RapidAPI-Key': process.env.XRapidAPIKey,
+    }
+  };
+  axios.request(options)
+    .then(function (response) {
+    res.json(response.data)
+  }).catch(function (error) {
+    console.error(error)
+  });
+}
+
 export{
-  workoutSearch
+  workoutSearch,
+  show
 }
 
