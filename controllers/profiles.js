@@ -12,6 +12,7 @@ function index(req, res) {
 
 function show(req, res) {
   Profile.findById(req.params.id)
+  .populate('workouts')
   .then(profile => {
     res.json(profile)
   })
