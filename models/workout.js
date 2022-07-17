@@ -12,8 +12,9 @@ const reviewSchema = new Schema({
 
 const workoutSchema = new Schema({
   name: String,
-  description: String,
-  // collectedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }],
+  type: String,
+  muscle: String,
+  collectedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }],
   reviews: [reviewSchema], 
 
 }, {
