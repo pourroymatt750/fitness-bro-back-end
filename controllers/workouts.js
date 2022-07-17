@@ -39,13 +39,13 @@ function addToCollection(req, res) {
   // req.body.collectedBy = req.user.profile._id
   Workout.create(req.body)
   .then((workout)=> {
-    console.log(workout,"*******************")
-    Profile.findById(req.user.profile._id)
+    Profile.findById(req.user.profile)
     .then(profile => {
+      workout.collectedBy.push(req.user.profile._id)
+      console.log(workout,"*******************")
       profile.workouts.push(workout)
-      // workout.collectedBy.push(req.user.profile._id)
       console.log(req.user.profile,"123**************************")
-        // workout.save()
+        workout.save()
         profile.save()
         res.json(workout)
     })
