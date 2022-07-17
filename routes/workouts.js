@@ -9,7 +9,7 @@ router.get('/',workoutsCtrl.workoutSearch)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-// router.get('/', checkAuth, workoutsCtrl.index)
 router.get('/search/:exerciseName', workoutsCtrl.show)
+router.post('/', checkAuth, workoutsCtrl.addToCollection)
 
 export { router }
