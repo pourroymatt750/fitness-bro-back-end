@@ -1,4 +1,5 @@
 import { Workout } from "../models/workout.js";
+import { Profile } from "../models/profile.js"
 import axios from "axios";
 
 function workoutSearch(req, res) {
@@ -34,8 +35,26 @@ function show(req, res) {
   });
 }
 
+function addToCollection(req, res) {
+  // req.body.collectedBy = req.user.profile._id
+  Workout.create(req.body)
+  .then((workout)=> {
+    console.log(workout,"*******************")
+    Profile.findById(req.user.profile._id)
+    .then(profile => {
+      profile.workouts.push(workout)
+      // workout.collectedBy.push(req.user.profile._id)
+      console.log(req.user.profile,"123**************************")
+        // workout.save()
+        profile.save()
+        res.json(workout)
+    })
+  })
+}
+
 export{
   workoutSearch,
-  show
+  show,
+  addToCollection
 }
 
