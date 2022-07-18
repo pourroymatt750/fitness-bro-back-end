@@ -13,7 +13,7 @@ export function index(req, res) {
 export function show(req, res) {
   Profile.findById(req.params.id)
   .populate({path:'meals'})
-  // .populate('workouts')
+  .populate('workouts')
   .then(profile => {
     console.log("*****",profile)
     res.json(profile)
