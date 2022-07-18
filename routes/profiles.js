@@ -11,7 +11,9 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth, profilesCtrl.show)
-router.delete('/',checkAuth,profilesCtrl.removeFromCollection)
+router.delete('/:id', checkAuth, profilesCtrl.deletedWorkout)
+router.delete('/:id', checkAuth, profilesCtrl.deletedMeal)
+
 
 
 export { router }
