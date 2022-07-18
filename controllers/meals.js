@@ -25,8 +25,10 @@ function addToCollection(req, res) {
     Profile.findById(req.user.profile)
     .populate('meals')
     .then(profile => {
+      meal.collectedBy.push(req.user.profile._id)
       profile.meals.push(meal)
       profile.save()
+      meal.save()
       res.json(meal)
     })
   })

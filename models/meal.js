@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
+const Schema = mongoose.Schema
 
-const mealsSchema=new mongoose.Schema({
+const mealsSchema=new Schema({
   name:{type:String},
   calories:{type:Number},
   protien:{type:Number},
