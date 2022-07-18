@@ -2,7 +2,7 @@ import { Workout } from "../models/workout.js";
 import { Profile } from "../models/profile.js"
 import axios from "axios";
 
-function workoutSearch(req, res) {
+export function workoutSearch(req, res) {
   const options = {
     method: 'GET',
     url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
@@ -18,7 +18,7 @@ function workoutSearch(req, res) {
   });
 }
 
-function show(req, res) {
+export function show(req, res) {
   const options = {
     method: 'GET',
     url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
@@ -35,7 +35,7 @@ function show(req, res) {
   });
 }
 
-function addToCollection(req, res) {
+export function addToCollection(req, res) {
   // req.body.collectedBy = req.user.profile._id
   Workout.create(req.body)
   .then((workout)=> {
@@ -54,8 +54,8 @@ function addToCollection(req, res) {
 
 
 export{
-  workoutSearch,
-  show,
-  addToCollection
+  // workoutSearch,
+  // show,
+  // addToCollection
 }
 
