@@ -1,4 +1,5 @@
 import { Meal } from "../models/meal.js";
+import { Profile } from "../models/profile.js";
 import axios from "axios";
 
 function mealSearch(req, res) {
@@ -17,6 +18,20 @@ function mealSearch(req, res) {
     console.error(error);
   });
 }
+function addToCollection(req, res) {
+  // req.body.collectedBy = req.user.profile._id
+  Meal.create(req.body)
+  .then((meal)=> {
+    Profile.findById(req.user.profile)
+    .populate('meals')
+    .then(profile => {
+      profile.meals.push(meal)
+      profile.save()
+      res.json(meal)
+    })
+  })
+}
 export{
-  mealSearch
+  mealSearch,
+  addToCollection
 }

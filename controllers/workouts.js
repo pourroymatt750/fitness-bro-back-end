@@ -42,7 +42,7 @@ function addToCollection(req, res) {
     Profile.findById(req.user.profile)
     .populate('workouts')
     .then(profile => {
-      workout.collectedBy.push(req.user.profile._id)
+      workout.collectedBy.push(req.user.profile)
       profile.workouts.push(workout)
       workout.save()
       profile.save()
@@ -50,6 +50,8 @@ function addToCollection(req, res) {
     })
   })
 }
+
+
 
 export{
   workoutSearch,
