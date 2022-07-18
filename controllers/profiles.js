@@ -21,5 +21,18 @@ function show(req, res) {
     res.status(500).json(err)
   })
 }
+export function removeFromCollection(req,res){
+  Workout.findByIdAndDelete(req.body)
+  .then((workout)=> {
+    Profile.findById(req.user.profile)
+    .then(profile => {
+      workout.collectedBy.remove(req.user.profile)
+      profile.workouts.remove(workout)
+      workout.save()
+      profile.save()
+      res.json(workout)
+    })
+  })
+}
 
 export { index, show }
