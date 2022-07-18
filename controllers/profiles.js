@@ -15,7 +15,6 @@ export function show(req, res) {
   .populate({path:'meals'})
   .populate('workouts')
   .then(profile => {
-    console.log("*****",profile)
     res.json(profile)
   })
   .catch(err => {
