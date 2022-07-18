@@ -1,6 +1,6 @@
 import { Profile } from '../models/profile.js'
 import { Workout } from '../models/workout.js'
-
+import { Meal } from '../models/meal.js'
 export function index(req, res) {
   Profile.find({})
   .then(profiles => res.json(profiles))
@@ -22,18 +22,41 @@ export function show(req, res) {
     res.status(500).json(err)
   })
 }
-export function removeFromCollection(req,res){
-  Workout.findByIdAndDelete(req.body)
-  .then((workout)=> {
+// export function removeFromCollection(req,res){
+//   Workout.findByIdAndDelete(req.body)
+//   .then((workout)=> {
+//     Profile.findById(req.user.profile)
+//     .then(profile => {
+//       workout.collectedBy.remove(req.user.profile)
+//       profile.workouts.remove(workout)
+//       workout.save()
+//       profile.save()
+//       res.json(workout)
+//     })
+//   })
+// }
+export function deletedWorkout(req,res){
+  Workout.findById(req.params.id)
+  .then(workout =>{
     Profile.findById(req.user.profile)
-    .then(profile => {
-      workout.collectedBy.remove(req.user.profile)
+    .then(profile=>{
       profile.workouts.remove(workout)
-      workout.save()
       profile.save()
-      res.json(workout)
-    })
+      console.log('******',profile)
+        res.json(profile)
+      })
   })
 }
-
+export function deletedMeal(req,res){
+  Meal.findById(req.params.id)
+  .then(meal =>{
+    Profile.findById(req.user.profile)
+    .then(profile=>{
+      profile.workouts.remove(meal)
+      profile.save()
+      console.log('******',profile)
+        res.json(profile)
+      })
+  })
+}
 // export { index, show }

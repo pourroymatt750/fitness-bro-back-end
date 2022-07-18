@@ -12,4 +12,5 @@ router.use(decodeUserFromToken)
 router.get('/search/:exerciseName', workoutsCtrl.show)
 router.post('/', checkAuth, workoutsCtrl.addToCollection)
 
+
 export { router }
