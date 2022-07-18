@@ -36,6 +36,7 @@ export function show(req, res) {
 //   })
 // }
 export function deletedWorkout(req,res){
+  console.log("WORKOUT:", req.params.id)
   Workout.findById(req.params.id)
   .then(workout =>{
     Profile.findById(req.user.profile)
@@ -48,11 +49,12 @@ export function deletedWorkout(req,res){
   })
 }
 export function deletedMeal(req,res){
+  console.log("MEAL:", req.params.id)
   Meal.findById(req.params.id)
   .then(meal =>{
     Profile.findById(req.user.profile)
     .then(profile=>{
-      profile.workouts.remove(meal)
+      profile.meals.remove(meal)
       profile.save()
       console.log('******',profile)
         res.json(profile)

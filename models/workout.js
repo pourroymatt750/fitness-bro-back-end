@@ -14,7 +14,6 @@ const workoutSchema = new Schema({
   name: String,
   type: String,
   muscle: String,
-  collectedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }],
   reviews: [reviewSchema], 
 
 }, {
