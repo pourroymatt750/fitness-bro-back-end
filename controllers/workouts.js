@@ -36,7 +36,6 @@ export function show(req, res) {
 }
 
 export function addToCollection(req, res) {
-  // req.body.collectedBy = req.user.profile._id
   Workout.create(req.body)
   .then((workout)=> {
     Profile.findById(req.user.profile)
