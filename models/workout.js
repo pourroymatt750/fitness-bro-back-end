@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const reviewSchema = new Schema({
-  rating: {type: Number, min: 1, max: 5, default: 5},
+  // rating: {type: Number, min: 1, max: 5, default: 5},
   comment: {type: String, required: true },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
 }, {

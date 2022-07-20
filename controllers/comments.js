@@ -13,7 +13,6 @@ import { Profile } from "../models/profile.js";
 //       .populate('comments')
 //       .populate({path:'meals'})
 //       .populate('workouts')
-      
 //       .then(populatedProfile => {
 //         res.json(populatedProfile)
 //       })

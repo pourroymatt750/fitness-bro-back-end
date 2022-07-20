@@ -48,6 +48,27 @@ export function addToCollection(req, res) {
   })
 }
 
+export function reviews(req,res){
+  // req.body.author = req.user.profile
+  // console.log("one",req.params.id)
+  Workout.create(req.body)
+    .then(workout => {
+      // Profile.findById(req.params.id)
+      // .then(profile =>{
+        console.log("two",workout)
+        workout.reviews.push(req.body)
+        // workout.reviews.push(profile)
+        workout.save()
+        // workout.reviews.push(profile)
+        // workout.save()
+        // })
+        .then(() => {
+          console.log("three",workout)
+          res.json(workout)
+        })
+    })
+
+}
 
 
 export{
