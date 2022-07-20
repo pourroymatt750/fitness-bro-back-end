@@ -57,4 +57,9 @@ export function deleteComment(req,res) {
   })
 }
 
-
+export function show(req, res) {
+  Comment.findById(req.params.id)
+  .then(comment => {
+    res.json(comment)
+  })
+}

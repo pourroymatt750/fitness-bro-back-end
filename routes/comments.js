@@ -9,6 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/:id', checkAuth, commentsCtrl.show)
 router.post('/:id', checkAuth, commentsCtrl.create)
 router.delete('/deleted/:profileId/:id', checkAuth, commentsCtrl.deleteComment)
 
