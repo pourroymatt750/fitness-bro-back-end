@@ -6,7 +6,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/',workoutsCtrl.workoutSearch)
-
+router.post('/:id/reviews',workoutsCtrl.reviews)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/search/:exerciseName', workoutsCtrl.show)

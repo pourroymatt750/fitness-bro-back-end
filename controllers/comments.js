@@ -20,37 +20,3 @@ export function create(req, res) {
     })  
   })
 }
-
-// export function create(req, res) {
-//   req.body.author = req.user.profile
-//   Comment.create(req.body)
-//   .then(newComment => {
-//     Profile.findById(req.params.id)
-//     .then(profile => {
-//       profile.comments.push(newComment._id)
-//       profile.save()
-//       Profile.findById(profile._id)
-//       .populate('comments')
-//       .populate({path:'meals'})
-//       .populate('workouts')
-//       .then(profile => {
-//         profile.populate('comments')
-//         .then(populatedComment => {
-//           newComment.populate('comment')
-//           .then(populatedProfile => {
-//             res.json([populatedProfile, populatedComment])
-//           })
-//         })
-//       })
-//     })  
-//   })
-// }
-
-// export function create(req, res) {
-//   req.body.author = req.user.profile
-//   Comment.create(req.body)
-//   .populate('author')
-//   .then(comment => {
-//     res.json(comment)
-//   })
-// }
