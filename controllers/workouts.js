@@ -53,11 +53,14 @@ export function reviews(req,res){
   // console.log("one",req.params.id)
   Workout.create(req.body)
     .then(workout => {
+      Workout.findById(workout._id) 
+      .then(workout => {
         workout.reviews.push(req.body)
         workout.save()
         .then(() => {
           res.json(workout)
         })
+      })
     })
 
 }
