@@ -9,9 +9,21 @@ export function create(req, res) {
     .then(profile => {
       profile.comments.push(comment._id)
       profile.save()
-      Profile.findById(profile._id)
-      .then(populatedProfile => {
-        res.json(populatedProfile)
+      .then(savedProfile =>{
+        Profile.findById(req.params.id)
+        .populate({path: 'meals'})
+        .populate('workouts')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'author',
+            model: 'Profile'
+          }
+        })
+        .then(populatedProfile => {
+          console.log(populatedProfile)
+          res.json(populatedProfile)
+        })
       })
     })  
   })
@@ -20,15 +32,29 @@ export function create(req, res) {
 export function deleteComment(req,res) {
   Comment.findById(req.params.id)
   .then(comment => {
-    Profile.findById(req.user.profile)
+    console.log(comment,"*******")
+    Profile.findById(req.params.profileId)
     .then(profile => {
-      console.log(profile)
       profile.comments.remove(comment)
       profile.save()
-      // Profile.findById(profile._id)
-      .then(populatedProfile => {
-        res.json(populatedProfile)
+      .then(savedProfile =>{
+        Profile.findById(req.params.profileId)
+        .populate({path: 'meals'})
+        .populate('workouts')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'author',
+            model: 'Profile'
+          }
+        })
+        .then(populatedProfile => {
+          // console.log(profile,"123456")
+          res.json(populatedProfile)
+        })
       })
     })  
   })
 }
+
+
