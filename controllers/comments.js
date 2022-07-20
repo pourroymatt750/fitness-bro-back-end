@@ -10,10 +10,22 @@ export function create(req, res) {
       profile.comments.push(comment._id)
       profile.save()
       Profile.findById(profile._id)
-      // .populate('comments')
-      // .populate({path:'meals'})
-      // .populate('workouts')
-      
+      .then(populatedProfile => {
+        res.json(populatedProfile)
+      })
+    })  
+  })
+}
+
+export function deleteComment(req,res) {
+  Comment.findById(req.params.id)
+  .then(comment => {
+    Profile.findById(req.user.profile)
+    .then(profile => {
+      console.log(profile)
+      profile.comments.remove(comment)
+      profile.save()
+      // Profile.findById(profile._id)
       .then(populatedProfile => {
         res.json(populatedProfile)
       })

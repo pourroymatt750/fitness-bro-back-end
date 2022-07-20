@@ -14,6 +14,4 @@ router.get('/:id', checkAuth, profilesCtrl.show)
 router.delete('/workouts/:id', checkAuth, profilesCtrl.deletedWorkout)
 router.delete('/meals/:id', checkAuth, profilesCtrl.deletedMeal)
 
-
-
 export { router }
