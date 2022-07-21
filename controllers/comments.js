@@ -63,3 +63,21 @@ export function show(req, res) {
     res.json(comment)
   })
 }
+export function update(req, res) {
+  console.log(req.body)
+  console.log("params",req.params.id)
+  Comment.findById(req.params.id)
+  .then(comment => {
+    console.log("comment",comment)
+    if(comment.author.equals(req.user.profile)){
+      comment.comment = req.body.comment
+      comment.save()
+      .then(()=>{
+        return res.json(comment)
+      })
+    }else{
+      return res.status(500).json({err:'Not Allowed'})
+    }
+  })
+}
+
