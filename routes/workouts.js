@@ -6,10 +6,9 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/',workoutsCtrl.workoutSearch)
-router.post('/:id',workoutsCtrl.reviews)
+router.get('/search/:exerciseName', workoutsCtrl.show)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/search/:exerciseName', workoutsCtrl.show)
 router.post('/', checkAuth, workoutsCtrl.addToCollection)
 
 

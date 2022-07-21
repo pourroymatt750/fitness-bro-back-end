@@ -47,28 +47,3 @@ export function addToCollection(req, res) {
     })
   })
 }
-
-export function reviews(req,res){
-  // req.body.author = req.user.profile
-  // console.log("one",req.params.id)
-  Workout.create(req.body)
-    .then(workout => {
-      Workout.findById(workout._id) 
-      .then(workout => {
-        workout.reviews.push(req.body)
-        workout.save()
-        .then(() => {
-          res.json(workout)
-        })
-      })
-    })
-
-}
-
-
-export{
-  // workoutSearch,
-  // show,
-  // addToCollection
-}
-
