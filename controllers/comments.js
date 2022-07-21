@@ -32,7 +32,6 @@ export function create(req, res) {
 export function deleteComment(req,res) {
   Comment.findById(req.params.id)
   .then(comment => {
-    console.log(comment,"*******")
     Profile.findById(req.params.profileId)
     .then(profile => {
       profile.comments.remove(comment)
@@ -49,7 +48,6 @@ export function deleteComment(req,res) {
           }
         })
         .then(populatedProfile => {
-          // console.log(profile,"123456")
           res.json(populatedProfile)
         })
       })
